@@ -23,7 +23,7 @@ public class PlayerSwitching : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetMouseButtonDown(0)) //change character on mouse button click
+        if(Input.GetKeyDown(KeyCode.Space)) //change character on mouse button click
         {
             charatcer_index++;
 

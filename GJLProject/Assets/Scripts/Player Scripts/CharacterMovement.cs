@@ -10,7 +10,7 @@ public class CharacterMovement : MonoBehaviour
 
     [SerializeField] float movement_speed = 6f;
     [SerializeField] float jump_force = 10f;
-    [SerializeField] float gravity = 20;
+    [SerializeField] float gravity = 10;
 
     Vector3 movement_direction = Vector3.zero;
 
