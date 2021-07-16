@@ -20,6 +20,9 @@ public class FollowCamera : MonoBehaviour
         Vector3 smooth_pos = Vector3. Lerp(transform.position, desired_pos, camera_speed * Time.deltaTime);
         transform.position = smooth_pos;
 
-        transform.LookAt(look_at);
+
+        Quaternion rot = Quaternion.LookRotation(look_at.position - transform.position);
+
+        transform.rotation = Quaternion.Slerp(transform.rotation, rot, camera_speed * Time.deltaTime);
     }
 }
