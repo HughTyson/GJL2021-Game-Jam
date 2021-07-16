@@ -5,8 +5,8 @@ using UnityEngine;
 public class FollowCamera : MonoBehaviour
 {
 
-    [SerializeField] Transform follow_transform;
-    [SerializeField] Transform look_at;
+    [SerializeField] public Transform follow_transform;
+    [SerializeField] public Transform look_at;
 
     [SerializeField] float camera_speed;
     [SerializeField] Vector3 offset;

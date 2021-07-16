@@ -5,42 +5,52 @@ using UnityEngine;
 public class CharacterMovement : MonoBehaviour
 {
 
-    Rigidbody body;
+    CharacterController controller;
     Vector3 movement = Vector3.zero;
 
-    [SerializeField] float movement_force = 100f;
-    [SerializeField] float jump_force = 50f;
+    [SerializeField] float movement_speed = 6f;
+    [SerializeField] float jump_force = 10f;
+    [SerializeField] float gravity = 20;
+
+    Vector3 movement_direction = Vector3.zero;
+    
 
     // Start is called before the first frame update
     void Start()
     {
-        body = GetComponent<Rigidbody>();
+        controller = GetComponent<CharacterController>();
     }
 
 
     private void FixedUpdate()
     {
 
+        HandleInput();
 
-        Move();
+        
         Jump();
+        Move();
     }
 
     private void Move()
     {
-        if (Input.GetKey(KeyCode.LeftArrow))
-            body.AddForce(movement_force * Vector3.left);
 
-        if (Input.GetKey(KeyCode.RightArrow))
-            body.AddForce(movement_force * Vector3.right);
+        movement_direction.y -= gravity * Time.deltaTime;
+
+        controller.Move(movement_direction * Time.deltaTime);
     }
 
     private void Jump()
     {
-        
-        if (Input.GetKey(KeyCode.UpArrow))
-            body.AddForce(jump_force * Vector3.up);
+        if (controller.isGrounded)
+            if (Input.GetKey(KeyCode.UpArrow))
+                movement_direction.y = jump_force;
 
+    }
+
+    private void HandleInput()
+    {
+        movement_direction.x = Input.GetAxisRaw("Horizontal") * movement_speed;
     }
 
 }
