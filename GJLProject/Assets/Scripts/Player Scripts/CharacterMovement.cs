@@ -34,8 +34,8 @@ public class CharacterMovement : MonoBehaviour
 
     private void Move()
     {
-
-        movement_direction.y -= gravity * Time.deltaTime;
+        if(!controller.isGrounded)
+            movement_direction.y -= gravity * Time.deltaTime;
 
         controller.Move(movement_direction * Time.deltaTime);
     }
