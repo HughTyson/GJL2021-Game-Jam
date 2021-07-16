@@ -13,12 +13,17 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] float gravity = 20;
 
     Vector3 movement_direction = Vector3.zero;
-    
+
+    private Quaternion look_left;
+    private Quaternion look_right;
+
 
     // Start is called before the first frame update
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        look_right = transform.rotation;
+        look_left = transform.rotation * Quaternion.Euler(0, 180, 0); ;
     }
 
 
@@ -26,10 +31,10 @@ public class CharacterMovement : MonoBehaviour
     {
 
         HandleInput();
-
         
         Jump();
         Move();
+        RotateCharacter();
     }
 
     private void Move()
@@ -46,6 +51,19 @@ public class CharacterMovement : MonoBehaviour
             if (Input.GetKey(KeyCode.UpArrow))
                 movement_direction.y = jump_force;
 
+    }
+
+    private void RotateCharacter()
+    {
+        if(movement_direction.x > 0)
+        {
+            transform.rotation = look_right;
+
+        }
+        else if(movement_direction.x < 0)
+        {
+            transform.rotation = look_left;
+        }
     }
 
     private void HandleInput()
