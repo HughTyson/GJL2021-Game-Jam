@@ -17,7 +17,7 @@ public class MoveablePlatforms : MonoBehaviour
 
     float tolerance;
     float speed =  2;
-    float delay_time;
+    float delay_time = 2;
 
     float delay_start;
 
