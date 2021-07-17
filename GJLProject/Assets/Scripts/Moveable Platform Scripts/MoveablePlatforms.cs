@@ -77,8 +77,6 @@ public class MoveablePlatforms : MonoBehaviour
                             NextTarget();
                         }                       
                     }
-
-
                 }
                 break;
             case PLATFORM_TYPES.UNLOCK_MOVE:
