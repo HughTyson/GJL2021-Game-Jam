@@ -5,13 +5,19 @@ using UnityEngine;
 
 enum PLATFORM_TYPES
 {
-    AUTO_MOVE, UNLOCK_MOVE, ONBUTTON_MOVE
+    AUTO_MOVE, UNLOCK_MOVE, ONPRESSURE_MOVE
 }
 
 public class MoveablePlatforms : MonoBehaviour
 {
 
     [SerializeField] Vector3[] points;
+    [SerializeField] PLATFORM_TYPES platform_type = PLATFORM_TYPES.AUTO_MOVE; //set by default to auto move
+
+    [Header("Trigger to activate")]
+    [SerializeField] PressurePlate[] connected_plates;
+
+
     int point_number = 0;
     Vector3 current_target;
 
@@ -22,7 +28,7 @@ public class MoveablePlatforms : MonoBehaviour
     float delay_start;
 
 
-    PLATFORM_TYPES platform_type = PLATFORM_TYPES.AUTO_MOVE; //set by default to auto move
+    
 
     private void Start()
     {
@@ -38,14 +44,7 @@ public class MoveablePlatforms : MonoBehaviour
     private void Update()
     {
 
-        if(transform.position != current_target)
-        {
-            MovePlatform();
-        }
-        else
-        {
-            UpdateTarget();
-        }
+        UpdateTarget();
     }
 
     public void MovePlatform() 
@@ -66,15 +65,63 @@ public class MoveablePlatforms : MonoBehaviour
         {
             case PLATFORM_TYPES.AUTO_MOVE:
                 {
-                    if(Time.time - delay_start > delay_time)
+
+                    if (transform.position != current_target)
                     {
-                        NextTarget();
+                        MovePlatform();
                     }
+                    else
+                    {
+                        if (Time.time - delay_start > delay_time)
+                        {
+                            NextTarget();
+                        }                       
+                    }
+
+
                 }
                 break;
             case PLATFORM_TYPES.UNLOCK_MOVE:
+                {
+                    //check refernce to pressure plate, if it has been pressed then change to AUTO_MOVE
+
+                    foreach(PressurePlate plate in connected_plates)
+                    {
+                        if(!plate.isTriggered)
+                        {
+                            return;
+                        }
+                    }
+
+                    platform_type = PLATFORM_TYPES.AUTO_MOVE;
+
+                }
                 break;
-            case PLATFORM_TYPES.ONBUTTON_MOVE:
+            case PLATFORM_TYPES.ONPRESSURE_MOVE:
+                {
+                    //constantly check if the pressure plate is down - if pressed down then move the platform
+
+                    foreach (PressurePlate plate in connected_plates)
+                    {
+                        if (!plate.isTriggered)
+                        {
+                            return;
+                        }
+                    }
+
+                    if (transform.position != current_target)
+                    {
+                        MovePlatform();
+                    }
+                    else
+                    {
+                        if (Time.time - delay_start > delay_time)
+                        {
+                            NextTarget();
+                        }
+                    }
+
+                }
                 break;
             default:
                 break;
