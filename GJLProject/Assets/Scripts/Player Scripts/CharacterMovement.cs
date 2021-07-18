@@ -53,6 +53,9 @@ public class CharacterMovement : MonoBehaviour
         foldedCollider.enabled = false;
         fullBody.SetActive(true);
         fullCollider.enabled = true;
+        controller.isKinematic = false;
+        controller.useGravity = true;
+
     }
 
     private void OnDisable()
@@ -63,6 +66,8 @@ public class CharacterMovement : MonoBehaviour
         foldedCollider.enabled = true;
         fullBody.SetActive(false);
         fullCollider.enabled = false;
+        controller.isKinematic = true;
+        controller.useGravity = false;
     }
 
     private void Update()
@@ -97,7 +102,9 @@ public class CharacterMovement : MonoBehaviour
         is_grounded = Physics.Raycast(transform.position, Vector3.down, distance_to_ground/2);
         Debug.DrawRay(transform.position, Vector3.down, Color.black, distance_to_ground/2);
 
-        if (movement_direction.z == 1 && is_grounded && !is_grabbing)
+
+
+        if (movement_direction.z == 1 && is_grounded && !is_grabbing && controller.velocity.y > -0.0001f && controller.velocity.y <= 0.00001f)
         {
             controller.AddForce(Vector3.up * Mathf.Sqrt(jump_height * -2f * Physics.gravity.y), ForceMode.VelocityChange);
         }

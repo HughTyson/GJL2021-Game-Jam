@@ -38,8 +38,10 @@ public class PlayerSwitching : MonoBehaviour
     void ChangeCharacter()
     {
         if(active_character)
-            //disable the person controller script
+        //disable the person controller script
+        {
             active_character.GetComponent<CharacterMovement>().enabled = false;
+        }
 
         //update the active_character variable
         active_character = characters[charatcer_index];
