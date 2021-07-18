@@ -8,7 +8,7 @@ public class Menu : MonoBehaviour
     public void PlayGame()
     {
         //loads the tutorial
-        GM_.instance.GetMembers.scene_mgr.LoadScene(2);
+        GM_.instance.GetMembers.scene_mgr.LoadScene(1);
 
     }
 
