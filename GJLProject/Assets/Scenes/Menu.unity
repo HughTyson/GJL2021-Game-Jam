@@ -597,5 +597,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Menu Prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 5827826862064736280, guid: eb2122383b3df4c4fa8bf5f6668219b0,
+        type: 3}
+      propertyPath: m_text
+      value: Just Us Two
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb2122383b3df4c4fa8bf5f6668219b0, type: 3}
