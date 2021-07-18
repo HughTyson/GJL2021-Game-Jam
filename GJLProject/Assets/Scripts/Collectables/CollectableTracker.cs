@@ -42,6 +42,7 @@ public class CollectableTracker : MonoBehaviour
                 {
                     //show proper UI elements
                     UI_elements[i].displayed_image.sprite = UI_elements[i].sprite;
+                    break;
                 }
             }
         }
