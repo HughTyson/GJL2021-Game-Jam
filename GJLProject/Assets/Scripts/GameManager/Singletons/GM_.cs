@@ -25,7 +25,7 @@ public class GM_ : AutoCleanupSingleton<GM_>
                 if (_instance == null)
                 {
                     Debug.LogWarning("Component type " + typeof(GM_) + " could not be found. Instantiating a new one");
-                    _instance = Instantiate(Resources.Load<GameObject>("GameManager")).GetComponent<GM_>();
+                    _instance = Instantiate(Resources.Load<GameObject>("GM_")).GetComponent<GM_>();
                 }
             }
             return _instance;
