@@ -42,6 +42,7 @@ public class MoveablePlatforms : MonoBehaviour
     {
 
         UpdateTarget();
+
     }
 
     public void MovePlatform() 
@@ -72,7 +73,7 @@ public class MoveablePlatforms : MonoBehaviour
                         if (Time.time - delay_start > delay_time)
                         {
                             NextTarget();
-                        }                       
+                        }
                     }
                 }
                 break;
@@ -80,9 +81,9 @@ public class MoveablePlatforms : MonoBehaviour
                 {
                     //check refernce to pressure plate, if it has been pressed then change to AUTO_MOVE
 
-                    foreach(PressurePlate plate in connected_plates)
+                    foreach (PressurePlate plate in connected_plates)
                     {
-                        if(!plate.isTriggered)
+                        if (!plate.isTriggered)
                         {
                             return;
                         }
