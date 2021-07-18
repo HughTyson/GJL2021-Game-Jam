@@ -33,28 +33,30 @@ public class Collectable : MonoBehaviour
         transform.Rotate(0, 20 * Time.deltaTime * speed, 0);
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.transform.tag == "Player")
-        {
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    if (collision.transform.tag == "Player")
+    //    {
 
-            OnCollectionCollision?.Invoke(collectable_type);
+    //        OnCollectionCollision?.Invoke(collectable_type);
 
-        }
+    //    }
 
-        Destroy(gameObject);
-    }
+    //    Destroy(gameObject);
+    //}
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.transform.tag == "Player")
+        if (other.transform.tag == "Player")
         {
 
-            OnCollectionCollision?.Invoke(collectable_type);
+            if (!other.isTrigger)
+            {
+                OnCollectionCollision?.Invoke(collectable_type);
+                Destroy(gameObject);
+            }
 
         }
-
-        Destroy(gameObject);
     }
 
 
