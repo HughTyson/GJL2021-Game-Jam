@@ -33,16 +33,23 @@ public class CharacterMovement : MonoBehaviour
         is_grabbing = false;
     }
 
+    private void OnEnable()
+    {
+        controller.constraints = RigidbodyConstraints.None;
+        controller.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
+    }
+
+    private void OnDisable()
+    {
+        controller.constraints = RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotation;
+        
+    }
+
 
     private void FixedUpdate()
     {
 
         HandleInput();
-
-        //check if the character is grounded
-
-
-
 
         Move();
         Jump();
@@ -58,14 +65,14 @@ public class CharacterMovement : MonoBehaviour
     {
 
 
-        bool is_grounded = Physics.Raycast(transform.position, Vector3.down, distance_to_ground + 0.1f);
-        Debug.DrawRay(transform.position, Vector3.down, Color.black, distance_to_ground + 0.1f);
+        float distance_to_ground = GetComponent<Collider>().bounds.extents.y;
+        bool is_grounded = Physics.Raycast(transform.position, Vector3.down, distance_to_ground/2);
+        Debug.DrawRay(transform.position, Vector3.down, Color.black, distance_to_ground/2);
 
         if (movement_direction.z == 1 && is_grounded)
         {
             controller.AddForce(Vector3.up * Mathf.Sqrt(jump_height * -2f * Physics.gravity.y), ForceMode.VelocityChange);
         }
-
 
     }
 

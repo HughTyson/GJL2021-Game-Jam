@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 7412834592222296117}
   - component: {fileID: 7412834592222296123}
   - component: {fileID: 5227685355648970785}
-  - component: {fileID: 1147941823707092414}
+  - component: {fileID: 4351770218421593662}
   m_Layer: 0
   m_Name: Character
   m_TagString: Player
@@ -78,8 +78,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movement_speed: 6
-  jump_height: 0.2
-  foot_collider: {fileID: 0}
+  grabbing_movement_speed: 3
+  jump_height: 3
 --- !u!54 &5227685355648970785
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -96,8 +96,8 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 120
   m_CollisionDetection: 0
---- !u!64 &1147941823707092414
-MeshCollider:
+--- !u!65 &4351770218421593662
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -106,10 +106,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 2089124832967395528, guid: fc03cad449a7c6c468a225342ca666c0, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 0.39027318, y: 0.91163874, z: 0.43993723}
+  m_Center: {x: 0.0059874207, y: 0.28260493, z: -0.014914215}
 --- !u!1001 &1427056882961073293
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -130,7 +129,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: fc03cad449a7c6c468a225342ca666c0,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.4
+      value: -0.3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fc03cad449a7c6c468a225342ca666c0,
         type: 3}

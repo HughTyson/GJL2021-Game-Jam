@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5862627797752692444}
+  - component: {fileID: 1050014606889055518}
   m_Layer: 0
   m_Name: Floor Object - Double Block
   m_TagString: Untagged
@@ -31,20 +32,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!64 &5569203601785965794
-MeshCollider:
+--- !u!65 &1050014606889055518
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3807590157349819934}
+  m_GameObject: {fileID: 1283369463990020353}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -1364087873485794358, guid: effdb06fc20631d4bace6308d58c8ca5, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 4.241333, y: 2.1193995, z: 2.1272578}
+  m_Center: {x: 0.120666504, y: 1.0596998, z: 0.06362903}
 --- !u!1001 &4041469130649447247
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -129,12 +129,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: effdb06fc20631d4bace6308d58c8ca5, type: 3}
---- !u!1 &3807590157349819934 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: effdb06fc20631d4bace6308d58c8ca5,
-    type: 3}
-  m_PrefabInstance: {fileID: 4041469130649447247}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4583705369526422692 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: effdb06fc20631d4bace6308d58c8ca5,

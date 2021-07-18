@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2471700450788250240}
   - component: {fileID: 2471700450788250241}
   - component: {fileID: 2471700450788250254}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: MoveableObjectTest
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -27,9 +27,6 @@ public class MoveablePlatforms : MonoBehaviour
 
     float delay_start;
 
-
-    
-
     private void Start()
     {
         if(points.Length > 0)
