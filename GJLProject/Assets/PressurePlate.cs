@@ -9,19 +9,13 @@ public class PressurePlate : MonoBehaviour
     private Vector3 originalPosition;
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         isTriggered = false;
         originalPosition = transform.position;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Player"))
         {
@@ -31,7 +25,7 @@ public class PressurePlate : MonoBehaviour
         }
     }
 
-    public void OnTriggerExit(Collider other)
+    private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
         {
