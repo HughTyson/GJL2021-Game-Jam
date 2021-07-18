@@ -42,22 +42,30 @@ public class CharacterMovement : MonoBehaviour
         controller.constraints = RigidbodyConstraints.None;
         controller.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
         grabTrigger.enabled = true;
+
     }
 
     private void OnDisable()
     {
         controller.constraints = RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotation;
         grabTrigger.enabled = false;
+
+    }
+
+    private void Update()
+    {
+        HandleInput();
+        RotateCharacter();
     }
 
 
     private void FixedUpdate()
     {
-        HandleInput();
+
 
         Move();
         Jump();
-        RotateCharacter();
+        
     }
 
     private void Move()
@@ -67,6 +75,7 @@ public class CharacterMovement : MonoBehaviour
             controller.MovePosition(controller.position + movement_direction * grabbing_movement_speed * Time.fixedDeltaTime);
         else   
             controller.MovePosition(controller.position + movement_direction * movement_speed * Time.fixedDeltaTime);
+
     }
 
     private void Jump()
