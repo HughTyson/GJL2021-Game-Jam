@@ -4,6 +4,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class Menu : MonoBehaviour
 {
+
+    private void Start()
+    {
+        
+    }
+
     //change the scene
     public void PlayGame()
     {

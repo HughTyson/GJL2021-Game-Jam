@@ -12,6 +12,7 @@ public class ChangeScene : MonoBehaviour
     {
         if(!change)
         {
+            GM_.instance.GetMembers.audio.PlaySFX("LevelComplete");
             GM_.instance.GetMembers.scene_mgr.LoadScene(next_scene);
             change = true;
         }
