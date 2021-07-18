@@ -53,11 +53,10 @@ public class Collectable : MonoBehaviour
             if (!other.isTrigger)
             {
                 OnCollectionCollision?.Invoke(collectable_type);
+                Destroy(gameObject);
             }
 
         }
-
-        Destroy(gameObject);
     }
 
 
