@@ -27,11 +27,14 @@ public class CharacterMovement : MonoBehaviour
 
     float distance_to_ground;
 
-
+    private void Awake()
+    {
+        controller = GetComponent<Rigidbody>();
+    }
     // Start is called before the first frame update
     void Start()
     {
-        controller = GetComponent<Rigidbody>();
+        
 
         look_right = transform.rotation;
         look_left = transform.rotation * Quaternion.Euler(0, 180, 0); ;

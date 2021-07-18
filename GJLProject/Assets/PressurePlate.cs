@@ -17,21 +17,19 @@ public class PressurePlate : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player"))
-        {
+
             isTriggered = true;
 
             transform.position = originalPosition - (new Vector3(0.0f, 0.075f, 0.0f));
-        }
+        
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
-        {
+
             isTriggered = false;
 
             transform.position = originalPosition;
-        }
+        
     }
 }

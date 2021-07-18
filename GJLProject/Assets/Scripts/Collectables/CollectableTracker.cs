@@ -13,6 +13,7 @@ public class CollectableTracker : MonoBehaviour
         public COLLECTABLE collectbale_type;
         //UI element attatched
         public Image displayed_image;
+        public Sprite sprite;
     }
 
 
@@ -33,13 +34,14 @@ public class CollectableTracker : MonoBehaviour
     private void Collectable_OnCollectionCollision(COLLECTABLE collectable_type)
     {
 
-        foreach(CollectableUIType obj in UI_elements)
+        for(int i = 0; i < UI_elements.Length; i++)
         {
-            if(obj.found != true)
+            if(UI_elements[i].found != true)
             {
-                if(obj.collectbale_type == collectable_type)
+                if (UI_elements[i].collectbale_type == collectable_type)
                 {
                     //show proper UI elements
+                    UI_elements[i].displayed_image.sprite = UI_elements[i].sprite;
                 }
             }
         }
