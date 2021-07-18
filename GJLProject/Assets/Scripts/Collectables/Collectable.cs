@@ -35,12 +35,26 @@ public class Collectable : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.transform.tag == "Player")
+        if (collision.transform.tag == "Player")
         {
 
             OnCollectionCollision?.Invoke(collectable_type);
 
         }
+
+        Destroy(gameObject);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.transform.tag == "Player")
+        {
+
+            OnCollectionCollision?.Invoke(collectable_type);
+
+        }
+
+        Destroy(gameObject);
     }
 
 
