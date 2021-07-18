@@ -9,7 +9,7 @@ public class CharacterMovement : MonoBehaviour
 
     [SerializeField] float movement_speed = 6f;
     [SerializeField] float jump_height = 10f;
-   
+    [SerializeField] Collider foot_collider;
 
     bool is_grounded;
 
@@ -18,6 +18,8 @@ public class CharacterMovement : MonoBehaviour
     private Quaternion look_left;
     private Quaternion look_right;
 
+    float distance_to_ground;
+
 
     // Start is called before the first frame update
     void Start()
@@ -25,7 +27,9 @@ public class CharacterMovement : MonoBehaviour
         controller = GetComponent<Rigidbody>();
         
         look_right = transform.rotation;
-        look_left = transform.rotation * Quaternion.Euler(0, 180, 0); ;
+        look_left = transform.rotation * Quaternion.Euler(0, 180, 0);
+
+        distance_to_ground = GetComponent<MeshCollider>().bounds.extents.y; ;
     }
 
 
@@ -52,8 +56,10 @@ controller.MovePosition(controller.position + movement_direction * movement_spee
 
     private void Jump()
     {
-        float DisstanceToTheGround = GetComponent<Collider>().bounds.extents.y;
-        bool is_grounded = Physics.Raycast(transform.position, Vector3.down, DisstanceToTheGround + 0.1f);
+
+        
+        bool is_grounded = Physics.Raycast(transform.position, Vector3.down, distance_to_ground + 0.1f);
+        Debug.DrawRay(transform.position, Vector3.down, Color.black, distance_to_ground + 0.1f);
 
         if (movement_direction.z == 1 && is_grounded)
         {
