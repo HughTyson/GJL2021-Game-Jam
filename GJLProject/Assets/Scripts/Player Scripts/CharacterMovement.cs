@@ -188,7 +188,6 @@ public class CharacterMovement : MonoBehaviour
                     is_grabbing = true;
 
                     other.attachedRigidbody.useGravity = false;
-                    other.attachedRigidbody.isKinematic = true;
 
                     if (other.transform.position.x > transform.position.x)
                     {
@@ -222,7 +221,6 @@ public class CharacterMovement : MonoBehaviour
                 {
                     is_grabbing = false;
                     other.attachedRigidbody.useGravity = true;
-                    other.attachedRigidbody.isKinematic = false;
                     other.transform.parent.parent = null;
 
                     Debug.Log("Successful Un-Grab!");
