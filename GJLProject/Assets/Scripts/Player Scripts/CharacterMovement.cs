@@ -11,6 +11,10 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] float grabbing_movement_speed = 3f;
     [SerializeField] float jump_height = 10f;
     [SerializeField] BoxCollider grabTrigger;
+    [SerializeField] GameObject foldedBody;
+    [SerializeField] BoxCollider foldedCollider;
+    [SerializeField] GameObject fullBody;
+    [SerializeField] BoxCollider fullCollider;
 
     bool is_grounded;
     bool is_grabbing;
@@ -42,14 +46,20 @@ public class CharacterMovement : MonoBehaviour
         controller.constraints = RigidbodyConstraints.None;
         controller.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
         grabTrigger.enabled = true;
-
+        foldedBody.SetActive(false);
+        foldedCollider.enabled = false;
+        fullBody.SetActive(true);
+        fullCollider.enabled = true;
     }
 
     private void OnDisable()
     {
         controller.constraints = RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotation;
         grabTrigger.enabled = false;
-
+        foldedBody.SetActive(true);
+        foldedCollider.enabled = true;
+        fullBody.SetActive(false);
+        fullCollider.enabled = false;
     }
 
     private void Update()
