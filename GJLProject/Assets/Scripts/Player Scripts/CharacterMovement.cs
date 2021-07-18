@@ -148,7 +148,7 @@ public class CharacterMovement : MonoBehaviour
 
         Debug.DrawRay(transform.position, Vector3.down, Color.black, distance_to_ground/2);
 
-        if (movement_direction.z == 1 && is_grounded && !is_grabbing)
+        if (movement_direction.z == 1 && is_grounded && !is_grabbing && controller.velocity.y > -0.00001f && controller.velocity.y < 0.00001f)
         {
             controller.AddForce(Vector3.up * Mathf.Sqrt(jump_height * -2f * Physics.gravity.y), ForceMode.VelocityChange);
         }
