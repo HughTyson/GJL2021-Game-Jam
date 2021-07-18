@@ -36,12 +36,15 @@ public class CollectableTracker : MonoBehaviour
 
         for(int i = 0; i < UI_elements.Length; i++)
         {
+            
             if(UI_elements[i].found != true)
             {
+                Debug.Log("Hello1");
                 if (UI_elements[i].collectbale_type == collectable_type)
                 {
                     //show proper UI elements
                     UI_elements[i].displayed_image.sprite = UI_elements[i].sprite;
+                    UI_elements[i].found = true;
                     break;
                 }
             }
