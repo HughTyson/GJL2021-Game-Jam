@@ -302,6 +302,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Robot1
       objectReference: {fileID: 0}
+    - target: {fileID: 7453141353527052756, guid: fc03cad449a7c6c468a225342ca666c0,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4f3827f213f1c7a43922c9780cf97ba8, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc03cad449a7c6c468a225342ca666c0, type: 3}
 --- !u!1 &2237309888745634268 stripped
@@ -378,6 +383,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -3148088098588580278, guid: 054f9ce8898148a4f9fe32d2a3d38a27,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4f3827f213f1c7a43922c9780cf97ba8, type: 2}
     - target: {fileID: 919132149155446097, guid: 054f9ce8898148a4f9fe32d2a3d38a27,
         type: 3}
       propertyPath: m_Name
