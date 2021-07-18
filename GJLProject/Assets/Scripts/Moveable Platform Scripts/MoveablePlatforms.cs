@@ -140,17 +140,23 @@ public class MoveablePlatforms : MonoBehaviour
     //make the platform a parent of the character so they move with it
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Player")
+        if (!other.isTrigger)
         {
-            other.transform.parent = transform;
+            if (other.gameObject.tag == "Player")
+            {
+                other.transform.parent = transform;
+            }
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if(other.gameObject.tag == "Player")
+        if (!other.isTrigger)
         {
-            other.transform.parent = null;
+            if (other.gameObject.tag == "Player")
+            {
+                other.transform.parent = null;
+            }
         }
     }
 

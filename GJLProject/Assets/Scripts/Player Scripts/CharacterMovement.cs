@@ -26,7 +26,7 @@ public class CharacterMovement : MonoBehaviour
     bool is_grabbing;
     bool is_looking_left;
 
-    bool touching_front;
+    int touching_front = 0;
     Vector3 movement_direction = Vector3.zero;
 
     private Quaternion look_left;
@@ -49,7 +49,9 @@ public class CharacterMovement : MonoBehaviour
         is_grounded = false;
         is_grabbing = false;
         is_looking_left = transform.rotation.eulerAngles.y > 90f;
-        touching_front = false;
+        touching_front = 0;
+        triggerEvent_FrontSide.ActionOccured_OnTriggerEnter += LeftSideTriggerEnter;
+        triggerEvent_FrontSide.ActionOccured_OnTriggerExit += LeftSideTriggerExit;
     }
 
     private void OnEnable()
@@ -63,8 +65,7 @@ public class CharacterMovement : MonoBehaviour
         controller.isKinematic = false;
         controller.useGravity = true;
 
-        triggerEvent_FrontSide.ActionOccured_OnTriggerEnter += LeftSideTriggerEnter;
-        triggerEvent_FrontSide.ActionOccured_OnTriggerExit += LeftSideTriggerExit;
+
         fullBody.SetActive(true);
     }
 
@@ -80,8 +81,6 @@ public class CharacterMovement : MonoBehaviour
         controller.useGravity = false;
 
 
-        triggerEvent_FrontSide.ActionOccured_OnTriggerEnter -= LeftSideTriggerEnter;
-        triggerEvent_FrontSide.ActionOccured_OnTriggerExit -= LeftSideTriggerExit;
         fullBody.SetActive(false);
     }
 
@@ -94,12 +93,12 @@ public class CharacterMovement : MonoBehaviour
     void LeftSideTriggerEnter(Collider other)
     {
         if (!other.isTrigger)
-            touching_front = true;
+            touching_front++;
     }
     void LeftSideTriggerExit(Collider other)
     {
         if (!other.isTrigger)
-            touching_front = false;
+            touching_front--;
     }
 
 
@@ -129,7 +128,7 @@ public class CharacterMovement : MonoBehaviour
         else
              velocity.x = movement_direction.x * movement_speed;
 
-        if (touching_front)
+        if (touching_front > 0)
         {
             velocity.x = 0;
         }
