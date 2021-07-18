@@ -9,7 +9,7 @@ public class CustomeSceneManager : MonoBehaviour
 
     //The names of all the loadable scenes
     [System.Serializable]
-    public enum SceneName { None = 0, MainMenu = 1, MainLevel = 2 }
+    public enum SceneName { None = 10, MainMenu = 0, Tutorial = 1, Level1 = 2, Level2 = 3 }
 
     //The data stored about each loadable scene
     [System.Serializable]

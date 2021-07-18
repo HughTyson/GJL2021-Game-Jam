@@ -7,7 +7,8 @@ public class Menu : MonoBehaviour
     //change the scene
     public void PlayGame()
     {
-        GM_.instance.GetMembers.scene_mgr.LoadScene(1);
+        //loads the tutorial
+        GM_.instance.GetMembers.scene_mgr.LoadScene(2);
 
     }
 

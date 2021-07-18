@@ -19,6 +19,8 @@ public class CharacterMovement : MonoBehaviour
 
 
     [SerializeField] ColliderTriggerEvent triggerEvent_FrontSide;
+    [SerializeField] Transform ray_point1;
+    [SerializeField] Transform ray_point2;
 
     bool is_grounded;
     bool is_grabbing;
@@ -39,7 +41,7 @@ public class CharacterMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
 
         look_right = transform.rotation;
         look_left = transform.rotation * Quaternion.Euler(0, 180, 0); ;
@@ -107,7 +109,7 @@ public class CharacterMovement : MonoBehaviour
 
         Move();
         Jump();
-        
+
     }
 
     private void Move()
@@ -118,7 +120,7 @@ public class CharacterMovement : MonoBehaviour
         //prev version
         //if (is_grabbing)
         //    controller.MovePosition(controller.position + movement_direction * grabbing_movement_speed * Time.fixedDeltaTime);
-        //else   
+        //else
         //    controller.MovePosition(controller.position + movement_direction * movement_speed * Time.fixedDeltaTime);
 
 
@@ -138,12 +140,15 @@ public class CharacterMovement : MonoBehaviour
     private void Jump()
     {
         float distance_to_ground = GetComponent<Collider>().bounds.extents.y;
-        is_grounded = Physics.Raycast(transform.position, Vector3.down, distance_to_ground/2);
+
+        is_grounded = Physics.Raycast(ray_point1.position, Vector3.down, distance_to_ground/2);
+
+        if(!is_grounded)
+            is_grounded = Physics.Raycast(ray_point2.position, Vector3.down, distance_to_ground / 2);
+
         Debug.DrawRay(transform.position, Vector3.down, Color.black, distance_to_ground/2);
 
-
-
-        if (movement_direction.z == 1 && is_grounded && !is_grabbing && controller.velocity.y > -0.0001f && controller.velocity.y <= 0.00001f)
+        if (movement_direction.z == 1 && is_grounded && !is_grabbing)
         {
             controller.AddForce(Vector3.up * Mathf.Sqrt(jump_height * -2f * Physics.gravity.y), ForceMode.VelocityChange);
         }

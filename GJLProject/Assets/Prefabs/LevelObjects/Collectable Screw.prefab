@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c755a211910caa3458bc21c014e7918c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collectable_type: 0
+  collectable_type: 1
   speed: 3
 --- !u!135 &7696060304268743655
 SphereCollider:
