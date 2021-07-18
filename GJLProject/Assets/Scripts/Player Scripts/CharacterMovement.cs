@@ -10,9 +10,11 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] float movement_speed = 6f;
     [SerializeField] float grabbing_movement_speed = 3f;
     [SerializeField] float jump_height = 10f;
+    [SerializeField] BoxCollider grabTrigger;
 
     bool is_grounded;
     bool is_grabbing;
+    bool is_looking_left;
 
     Vector3 movement_direction = Vector3.zero;
 
@@ -30,25 +32,27 @@ public class CharacterMovement : MonoBehaviour
         look_right = transform.rotation;
         look_left = transform.rotation * Quaternion.Euler(0, 180, 0); ;
 
+        is_grounded = false;
         is_grabbing = false;
+        is_looking_left = transform.rotation.eulerAngles.y > 90f;
     }
 
     private void OnEnable()
     {
         controller.constraints = RigidbodyConstraints.None;
         controller.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
+        grabTrigger.enabled = true;
     }
 
     private void OnDisable()
     {
         controller.constraints = RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotation;
-        
+        grabTrigger.enabled = false;
     }
 
 
     private void FixedUpdate()
     {
-
         HandleInput();
 
         Move();
@@ -58,34 +62,39 @@ public class CharacterMovement : MonoBehaviour
 
     private void Move()
     {
-        controller.MovePosition(controller.position + movement_direction * movement_speed * Time.fixedDeltaTime);
+
+        if (is_grabbing)
+            controller.MovePosition(controller.position + movement_direction * grabbing_movement_speed * Time.fixedDeltaTime);
+        else   
+            controller.MovePosition(controller.position + movement_direction * movement_speed * Time.fixedDeltaTime);
     }
 
     private void Jump()
     {
-
-
         float distance_to_ground = GetComponent<Collider>().bounds.extents.y;
-        bool is_grounded = Physics.Raycast(transform.position, Vector3.down, distance_to_ground/2);
+        is_grounded = Physics.Raycast(transform.position, Vector3.down, distance_to_ground/2);
         Debug.DrawRay(transform.position, Vector3.down, Color.black, distance_to_ground/2);
 
-        if (movement_direction.z == 1 && is_grounded)
+        if (movement_direction.z == 1 && is_grounded && !is_grabbing)
         {
             controller.AddForce(Vector3.up * Mathf.Sqrt(jump_height * -2f * Physics.gravity.y), ForceMode.VelocityChange);
         }
-
     }
 
     private void RotateCharacter()
     {
-        if(movement_direction.x > 0)
+        if (!is_grabbing)
         {
-            transform.rotation = look_right;
-
-        }
-        else if(movement_direction.x < 0)
-        {
-            transform.rotation = look_left;
+            if (movement_direction.x > 0)
+            {
+                is_looking_left = false;
+                transform.rotation = look_right;
+            }
+            else if (movement_direction.x < 0)
+            {
+                is_looking_left = true;
+                transform.rotation = look_left;
+            }
         }
     }
 
@@ -98,41 +107,66 @@ public class CharacterMovement : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Crate") && (Input.GetKeyDown("right ctrl") || Input.GetKeyDown("left ctrl")))
+        if(other.CompareTag("Crate") && is_grounded)
         {
-            Debug.Log("Attempting Grab");
-
-            if (!is_grabbing)
+            if ((Input.GetKeyDown("right ctrl") || Input.GetKeyDown("left ctrl")))
             {
-                is_grabbing = true;
-                other.transform.parent.parent = transform;
-                other.attachedRigidbody.useGravity = false;
-                other.attachedRigidbody.isKinematic = true;
+                if(!is_grabbing)
+                {
+                    is_grabbing = true;
 
-                Debug.Log("Successful Grab!");
+                    other.attachedRigidbody.useGravity = false;
+                    other.attachedRigidbody.isKinematic = true;
+
+                    if (other.transform.position.x > transform.position.x)
+                    {
+                        if (is_looking_left)
+                        {
+                            transform.rotation = look_right;
+                            is_looking_left = false;
+                        }
+                    }
+                    else
+                    {
+                        if (!is_looking_left)
+                        {
+                            is_looking_left = true;
+                            transform.rotation = look_left;
+                        }
+                    }
+
+                    other.transform.parent.parent = transform;
+                    if (is_looking_left)
+                        other.transform.parent.position = other.transform.parent.position + new Vector3(-0.1f, 0f, 0f);
+                    else
+                        other.transform.parent.position = other.transform.parent.position + new Vector3(0.1f, 0f, 0f);
+
+                    Debug.Log("Successful Grab!");
+                }
             }
-        }
-        else if (!Input.GetKey("right ctrl") && !Input.GetKey("left ctrl"))
-        {
-            if (is_grabbing)
+            else if(Input.GetKeyUp("right ctrl") || Input.GetKeyUp("left ctrl"))
             {
-                is_grabbing = false;
-                other.transform.parent.parent = null;
-                other.attachedRigidbody.useGravity = true;
-                other.attachedRigidbody.isKinematic = false;
+                if (is_grabbing)
+                {
+                    is_grabbing = false;
+                    other.attachedRigidbody.useGravity = true;
+                    other.attachedRigidbody.isKinematic = false;
+                    other.transform.parent.parent = null;
 
-                Debug.Log("Successful Un-Grab!");
+                    Debug.Log("Successful Un-Grab!");
+                }
             }
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        //if(is_grabbing)
+        //if(other.CompareTag("Crate") && is_grabbing)
         //{
         //    is_grabbing = false;
-        //    other.transform.parent.parent = null;
+        //    other.attachedRigidbody.useGravity = true;
         //    other.attachedRigidbody.isKinematic = false;
+        //    other.transform.parent.parent = null;
 
         //    Debug.Log("Forced Un-Grab!");
         //}
