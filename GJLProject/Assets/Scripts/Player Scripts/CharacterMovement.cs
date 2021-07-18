@@ -5,6 +5,7 @@ using UnityEngine;
 public class CharacterMovement : MonoBehaviour
 {
 
+
     Rigidbody controller;
 
     [SerializeField] float movement_speed = 6f;
@@ -16,6 +17,8 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] GameObject fullBody;
     [SerializeField] BoxCollider fullCollider;
 
+
+    [SerializeField] ColliderTriggerEvent triggerEvent_FrontSide;
     [SerializeField] Transform ray_point1;
     [SerializeField] Transform ray_point2;
 
@@ -23,6 +26,7 @@ public class CharacterMovement : MonoBehaviour
     bool is_grabbing;
     bool is_looking_left;
 
+    bool touching_front;
     Vector3 movement_direction = Vector3.zero;
 
     private Quaternion look_left;
@@ -37,7 +41,7 @@ public class CharacterMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
 
         look_right = transform.rotation;
         look_left = transform.rotation * Quaternion.Euler(0, 180, 0); ;
@@ -45,6 +49,7 @@ public class CharacterMovement : MonoBehaviour
         is_grounded = false;
         is_grabbing = false;
         is_looking_left = transform.rotation.eulerAngles.y > 90f;
+        touching_front = false;
     }
 
     private void OnEnable()
@@ -54,8 +59,13 @@ public class CharacterMovement : MonoBehaviour
         grabTrigger.enabled = true;
         foldedBody.SetActive(false);
         foldedCollider.enabled = false;
-        fullBody.SetActive(true);
         fullCollider.enabled = true;
+        controller.isKinematic = false;
+        controller.useGravity = true;
+
+        triggerEvent_FrontSide.ActionOccured_OnTriggerEnter += LeftSideTriggerEnter;
+        triggerEvent_FrontSide.ActionOccured_OnTriggerExit += LeftSideTriggerExit;
+        fullBody.SetActive(true);
     }
 
     private void OnDisable()
@@ -64,14 +74,32 @@ public class CharacterMovement : MonoBehaviour
         grabTrigger.enabled = false;
         foldedBody.SetActive(true);
         foldedCollider.enabled = true;
-        fullBody.SetActive(false);
+
         fullCollider.enabled = false;
+        controller.isKinematic = true;
+        controller.useGravity = false;
+
+
+        triggerEvent_FrontSide.ActionOccured_OnTriggerEnter -= LeftSideTriggerEnter;
+        triggerEvent_FrontSide.ActionOccured_OnTriggerExit -= LeftSideTriggerExit;
+        fullBody.SetActive(false);
     }
 
     private void Update()
     {
         HandleInput();
         RotateCharacter();
+    }
+
+    void LeftSideTriggerEnter(Collider other)
+    {
+        if (!other.isTrigger)
+            touching_front = true;
+    }
+    void LeftSideTriggerExit(Collider other)
+    {
+        if (!other.isTrigger)
+            touching_front = false;
     }
 
 
@@ -81,17 +109,32 @@ public class CharacterMovement : MonoBehaviour
 
         Move();
         Jump();
-        
+
     }
 
     private void Move()
     {
 
-        if (is_grabbing)
-            controller.MovePosition(controller.position + movement_direction * grabbing_movement_speed * Time.fixedDeltaTime);
-        else   
-            controller.MovePosition(controller.position + movement_direction * movement_speed * Time.fixedDeltaTime);
+        Vector3 velocity = controller.velocity;
 
+        //prev version
+        //if (is_grabbing)
+        //    controller.MovePosition(controller.position + movement_direction * grabbing_movement_speed * Time.fixedDeltaTime);
+        //else
+        //    controller.MovePosition(controller.position + movement_direction * movement_speed * Time.fixedDeltaTime);
+
+
+        if (is_grabbing)
+             velocity.x = movement_direction.x * grabbing_movement_speed;
+        else
+             velocity.x = movement_direction.x * movement_speed;
+
+        if (touching_front)
+        {
+            velocity.x = 0;
+        }
+
+        controller.velocity = velocity;
     }
 
     private void Jump()
@@ -105,7 +148,7 @@ public class CharacterMovement : MonoBehaviour
 
         Debug.DrawRay(transform.position, Vector3.down, Color.black, distance_to_ground/2);
 
-        if (movement_direction.z == 1 && is_grounded && !is_grabbing)
+        if (movement_direction.z == 1 && is_grounded && !is_grabbing && controller.velocity.y > -0.00001f && controller.velocity.y < 0.00001f)
         {
             controller.AddForce(Vector3.up * Mathf.Sqrt(jump_height * -2f * Physics.gravity.y), ForceMode.VelocityChange);
         }

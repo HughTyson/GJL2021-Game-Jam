@@ -30,6 +30,63 @@ Transform:
   m_Father: {fileID: 7412834592222296117}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3292969987869890155
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3006954523706140322}
+  - component: {fileID: 337474807658577028}
+  - component: {fileID: 8184020186020689415}
+  m_Layer: 0
+  m_Name: FrontSide
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3006954523706140322
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3292969987869890155}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.273, y: 0.306, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7412834592222296117}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &337474807658577028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3292969987869890155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43d97c288cf67534a83a77a9110821cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &8184020186020689415
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3292969987869890155}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.03, y: 0.89, z: 0.03}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3521490430658135324
 GameObject:
   m_ObjectHideFlags: 0
@@ -96,6 +153,7 @@ Transform:
   - {fileID: 8774122489381500757}
   - {fileID: 2751494613144553066}
   - {fileID: 2285947868160951310}
+  - {fileID: 3006954523706140322}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -119,6 +177,7 @@ MonoBehaviour:
   foldedCollider: {fileID: 489827836}
   fullBody: {fileID: 2237309888745634268}
   fullCollider: {fileID: 4351770218421593662}
+  triggerEvent_FrontSide: {fileID: 337474807658577028}
   ray_point1: {fileID: 2751494613144553066}
   ray_point2: {fileID: 2285947868160951310}
 --- !u!54 &5227685355648970785

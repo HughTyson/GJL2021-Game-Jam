@@ -1,19 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!64 &7368053013223027369
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1366304155752482402}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -3758573805739257388, guid: 830a349c34871eb4aa39d6fb59a2e5a5, type: 3}
 --- !u!1 &5093288687724538275
 GameObject:
   m_ObjectHideFlags: 0
@@ -23,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6861580977383461820}
+  - component: {fileID: 3440399722757574349}
   m_Layer: 0
   m_Name: Floor Object - Single Block
   m_TagString: Untagged
@@ -45,6 +32,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &3440399722757574349
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5093288687724538275}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.1166806, y: 2.1184988, z: 2.1099563}
+  m_Center: {x: -0.05214691, y: 1.0622027, z: 0.05200243}
 --- !u!1001 &2177349364094696243
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -129,12 +129,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 830a349c34871eb4aa39d6fb59a2e5a5, type: 3}
---- !u!1 &1366304155752482402 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 830a349c34871eb4aa39d6fb59a2e5a5,
-    type: 3}
-  m_PrefabInstance: {fileID: 2177349364094696243}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1854857186400017624 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 830a349c34871eb4aa39d6fb59a2e5a5,
