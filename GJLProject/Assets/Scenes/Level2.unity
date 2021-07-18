@@ -1294,7 +1294,7 @@ MonoBehaviour:
   characters:
   - {fileID: 1793951133}
   - {fileID: 368531463}
-  scene_camera: {fileID: 0}
+  scene_camera: {fileID: 1558880164}
 --- !u!4 &1762264208
 Transform:
   m_ObjectHideFlags: 0
