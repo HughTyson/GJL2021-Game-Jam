@@ -55,16 +55,16 @@ MonoBehaviour:
   UI_elements:
   - found: 0
     collectbale_type: 0
-    displayed_image: {fileID: 0}
-    sprite: {fileID: 0}
+    displayed_image: {fileID: 4605244406612569713}
+    sprite: {fileID: 21300000, guid: 3bd6a11baebfc464d94e64d8a7fc0283, type: 3}
   - found: 0
     collectbale_type: 1
-    displayed_image: {fileID: 0}
-    sprite: {fileID: 0}
+    displayed_image: {fileID: 4605244406151348663}
+    sprite: {fileID: 21300000, guid: 3bd6a11baebfc464d94e64d8a7fc0283, type: 3}
   - found: 0
     collectbale_type: 1
-    displayed_image: {fileID: 0}
-    sprite: {fileID: 0}
+    displayed_image: {fileID: 4605244406020151238}
+    sprite: {fileID: 21300000, guid: 3bd6a11baebfc464d94e64d8a7fc0283, type: 3}
 --- !u!1 &4605244406020151236
 GameObject:
   m_ObjectHideFlags: 0
