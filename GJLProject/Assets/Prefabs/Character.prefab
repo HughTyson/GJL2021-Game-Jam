@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2285947868160951310}
   m_Layer: 0
   m_Name: RayCastP2
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 8184020186020689415}
   m_Layer: 0
   m_Name: FrontSide
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 2751494613144553066}
   m_Layer: 0
   m_Name: RayCastP1
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
