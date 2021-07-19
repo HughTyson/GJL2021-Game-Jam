@@ -445,8 +445,53 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6842526493222106995, guid: 02ceaa6323bc8cc4fa90ac551d95623a,
         type: 3}
+      propertyPath: MUSIC.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6842526493222106995, guid: 02ceaa6323bc8cc4fa90ac551d95623a,
+        type: 3}
+      propertyPath: SFX.Array.data[0].id
+      value: LevelComplete
+      objectReference: {fileID: 0}
+    - target: {fileID: 6842526493222106995, guid: 02ceaa6323bc8cc4fa90ac551d95623a,
+        type: 3}
+      propertyPath: MUSIC.Array.data[0].id
+      value: BackgroundMusic
+      objectReference: {fileID: 0}
+    - target: {fileID: 6842526493222106995, guid: 02ceaa6323bc8cc4fa90ac551d95623a,
+        type: 3}
+      propertyPath: SFX.Array.data[0].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 98cd106e2daeedc46869dd76bad987b1, type: 3}
+    - target: {fileID: 6842526493222106995, guid: 02ceaa6323bc8cc4fa90ac551d95623a,
+        type: 3}
+      propertyPath: SFX.Array.data[0].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6842526493222106995, guid: 02ceaa6323bc8cc4fa90ac551d95623a,
+        type: 3}
+      propertyPath: MUSIC.Array.data[0].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: c425556ad5ecc16478c9274956458d3a, type: 3}
+    - target: {fileID: 6842526493222106995, guid: 02ceaa6323bc8cc4fa90ac551d95623a,
+        type: 3}
       propertyPath: SFX.Array.data[0].volume
-      value: 0
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6842526493222106995, guid: 02ceaa6323bc8cc4fa90ac551d95623a,
+        type: 3}
+      propertyPath: MUSIC.Array.data[0].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6842526493222106995, guid: 02ceaa6323bc8cc4fa90ac551d95623a,
+        type: 3}
+      propertyPath: MUSIC.Array.data[0].volume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6842526493222106995, guid: 02ceaa6323bc8cc4fa90ac551d95623a,
+        type: 3}
+      propertyPath: MUSIC.Array.data[0].is_looping
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 02ceaa6323bc8cc4fa90ac551d95623a, type: 3}
